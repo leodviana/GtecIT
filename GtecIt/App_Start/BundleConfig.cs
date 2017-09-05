@@ -1,21 +1,23 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace GtecIt
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
+                                          "~/Scripts/typeahead.jquery.min.js",
+                                          "~/Scripts/bloodhound.min.js",
+                                          "~/Scripts/typeahead.bundle.min.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
+                      "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -23,9 +25,33 @@ namespace GtecIt
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
+                                          "~/Scripts/datetimepicker/moment.min.js",
+                                          "~/Scripts/datetimepicker/bootstrap-datetimepicker.js",
+                                          "~/Scripts/datetimepicker/datetimepicker.pt-BR.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                                         "~/Scripts/jquery.dataTables.js",
+                                         "~/Scripts/dataTables.bootstrap.js",
+                                         "~/Scripts/dataTables.responsive.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mask").Include(
+                             "~/Scripts/jquery.inputmask.min.js",
+                             "~/Scripts/jquery.maskMoney.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/default").Include(
+                              "~/Scripts/defaults.js"));
+                                         
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/dataTables.bootstrap.css",
+                      "~/Content/dataTables.responsive.css",
+                      "~/Content/bootstrap-datetimepicker.min.css",
+                      "~/Content/typeahead.css",
                       "~/Content/site.css"));
+
+
         }
     }
 }

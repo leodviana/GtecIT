@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtecIt", "GtecIt\GtecIt.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtecIt.Domain", "GtecIt.Domain\GtecIt.Domain.csproj", "{FAF7B7B0-2A68-47C9-9099-131A53046E28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtecIt.Infra.Data", "GtecIt.Infra.Data\GtecIt.Infra.Data.csproj", "{F9B704C1-1CFA-4160-B533-84EE2C222B50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FAF7B7B0-2A68-47C9-9099-131A53046E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF7B7B0-2A68-47C9-9099-131A53046E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAF7B7B0-2A68-47C9-9099-131A53046E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B704C1-1CFA-4160-B533-84EE2C222B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B704C1-1CFA-4160-B533-84EE2C222B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B704C1-1CFA-4160-B533-84EE2C222B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B704C1-1CFA-4160-B533-84EE2C222B50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
