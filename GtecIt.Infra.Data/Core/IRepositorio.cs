@@ -15,12 +15,17 @@ namespace GtecIt.Infra.Data.Core
 
         bool VerificarExistencia(Expression<Func<TEntity, bool>> predicate);
 
-        void SalvarOuAtualizar(TEntity entity);
+        //void SalvarOuAtualizar(TEntity entity);
+        void Salvar(TEntity entity);
+        void Atualizar(TEntity entity);
+
+
         void SalvarLista(IEnumerable<TEntity> entities);
 
         //int SalvarRetornarId(TEntity entity);
 
         void Remover(TEntity entity);
+        void RemoverPorId(int id);
         void RemoverLista(IEnumerable<TEntity> entities);
     }
 }

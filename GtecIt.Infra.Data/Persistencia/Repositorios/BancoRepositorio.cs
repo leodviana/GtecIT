@@ -15,6 +15,7 @@ namespace GtecIt.Infra.Data.Persistencia.Repositorios
             get { return Context as GtecContext; }
         }
 
+
        
     }
 }

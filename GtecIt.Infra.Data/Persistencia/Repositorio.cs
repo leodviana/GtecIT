@@ -9,9 +9,9 @@ using GtecIt.Infra.Data.Core;
 
 namespace GtecIt.Infra.Data.Persistencia
 {
-    
-        public class Repositorio<TEntity> : IRepositorio<TEntity> where TEntity : class
-       {
+
+    public class Repositorio<TEntity> : IRepositorio<TEntity> where TEntity : class
+    {
 
         protected readonly DbContext Context;
 
@@ -27,12 +27,14 @@ namespace GtecIt.Infra.Data.Persistencia
 
         public IQueryable<TEntity> ObterTodos()
         {
-            return Context.Set<TEntity>().AsNoTracking();
+            return Context.Set<TEntity>();
+            //return Context.Set<TEntity>().AsNoTracking();
         }
 
         public IQueryable<TEntity> ObterComFiltro(Expression<Func<TEntity, bool>> predicate)
         {
-            return Context.Set<TEntity>().AsNoTracking().Where(predicate);
+            return Context.Set<TEntity>().Where(predicate);
+            //return Context.Set<TEntity>().AsNoTracking().Where(predicate);
         }
 
         public TEntity ObterUnico(Expression<Func<TEntity, bool>> predicate)
@@ -45,9 +47,19 @@ namespace GtecIt.Infra.Data.Persistencia
             return Context.Set<TEntity>().AsNoTracking().Any(predicate);
         }
 
-        public void SalvarOuAtualizar(TEntity entity)
+        //public void SalvarOuAtualizar(TEntity entity)
+        //{
+        //    Context.Set<TEntity>().AddOrUpdate(entity);
+        //}
+
+        public void Salvar(TEntity entity)
         {
-            Context.Set<TEntity>().AddOrUpdate(entity);
+            Context.Set<TEntity>().Add(entity);
+        }
+
+        public void Atualizar(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         public void SalvarLista(IEnumerable<TEntity> entities)
@@ -71,10 +83,6 @@ namespace GtecIt.Infra.Data.Persistencia
             Context.Set<TEntity>().Remove(entity);
         }
 
-        public void RemoverLista(IEnumerable<TEntity> entities)
-        {
-            Context.Set<TEntity>().RemoveRange(entities);
-        }
         public void RemoverPorId(int id)
         {
             var entity = Context.Set<TEntity>().Find(id);
@@ -88,6 +96,11 @@ namespace GtecIt.Infra.Data.Persistencia
                 Context.SaveChanges();
             }
 
+        }
+
+        public void RemoverLista(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().RemoveRange(entities);
         }
     }
 }

@@ -81,8 +81,6 @@ namespace GtecIt.Infra.Data.Persistencia
         public IUsuarioRepositorio Usuarios { get; set; }
         public IRelatorioRepositorio Relatorios { get; set; }
         
-
-
         public int Complete()
         {
             return _context.SaveChanges();

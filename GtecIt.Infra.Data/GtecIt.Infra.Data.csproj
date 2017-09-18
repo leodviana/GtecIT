@@ -87,7 +87,6 @@
     <Compile Include="Core\Interfaces\IProdutoRepositorio.cs" />
     <Compile Include="Core\Interfaces\IProfissaoRepositorio.cs" />
     <Compile Include="Core\Interfaces\IRelatorioRepositorio.cs" />
-    <Compile Include="Core\Interfaces\IRepositorio.cs" />
     <Compile Include="Core\Interfaces\ISexoRepositorio.cs" />
     <Compile Include="Core\Interfaces\ISubGrupoRepositorio.cs" />
     <Compile Include="Core\Interfaces\ITipoPagamentoRepositorio.cs" />
@@ -132,7 +131,6 @@
     <Compile Include="Persistencia\Repositorios\BancoRepositorio.cs" />
     <Compile Include="Persistencia\Repositorios\CefalometriaItemRepositorio.cs" />
     <Compile Include="Persistencia\Repositorios\CefalometriaRepositorio .cs" />
-    <Compile Include="Persistencia\Repositorios\Class1.cs" />
     <Compile Include="Persistencia\Repositorios\ClienteRepositorio.cs" />
     <Compile Include="Persistencia\Repositorios\ConvenioRepositorio.cs" />
     <Compile Include="Persistencia\Repositorios\DentistaRepositorio.cs" />

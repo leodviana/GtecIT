@@ -13,7 +13,7 @@ using GtecIt.Domain.Entities;
 using GtecIt.Infra.Data.Core;
 using Microsoft.Ajax.Utilities;
 
-namespace Gtec.Controllers
+namespace GtecIt.Controllers
 {
     public class BancoController : Controller
     {

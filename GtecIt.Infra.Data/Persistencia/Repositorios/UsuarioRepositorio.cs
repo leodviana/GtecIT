@@ -16,19 +16,6 @@ namespace GtecIt.Infra.Data.Persistencia.Repositorios
             get { return Context as GtecContext; }
         }
 
-        public void Salvar(Usuario entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Atualizar(Usuario entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void RemoverPorId(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+      
     }
 }
