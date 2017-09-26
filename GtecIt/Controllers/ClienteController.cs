@@ -82,7 +82,7 @@ namespace GtecIt.Controllers
                 return View(model);
             }
 
-            var model2 = Mapper.Map<ClienteEditViewModel>(_uoW.Clientes.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == Convert.ToInt32(model.Id_grlbasico)));
+            var model2 = Mapper.Map<ClienteEditViewModel>(_uoW.Clientes.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == model.Id_grlbasico));
 
             if (model2 == null)
             {
@@ -262,6 +262,27 @@ namespace GtecIt.Controllers
 
             return Json(html);
         }
-    
-}
+        public JsonResult AutoCompleteClientePreFetch()
+        {
+            try
+            {
+                var resultado = _uoW.Clientes.ObterTodos().Select(x =>
+                new
+                {
+                    Id = x.id_Grlcliente.ToString(),
+                    Codigo = x.id_Grlcliente.ToString(),
+                    Descricao = x.grlbasic.nome.ToString(),
+                }).ToList();
+
+                return Json(new { success = true, results = resultado }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+    }
 }

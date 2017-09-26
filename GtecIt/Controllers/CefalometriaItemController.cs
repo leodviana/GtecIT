@@ -57,9 +57,9 @@ namespace GtecIt.Controllers
             model.id_grldentista = Convert.ToInt16(codigo);
             try
             {
-                model.DropdownCefalometricas = _uoW.CefalometriaItems.ObterTodos().OrderBy(x => x.grlcefalometria.desc_cefalometria)
-                 .OrderBy(x => x.grlcefalometria.desc_cefalometria)
-                 .Select(x => new SelectListItem { Text = x.grlcefalometria.desc_cefalometria, Value = x.id_GrlCefalometrias.ToString() })
+                model.DropdownCefalometricas = _uoW.Cefalometrias.ObterTodos().OrderBy(x => x.desc_cefalometria)
+                 
+                 .Select(x => new SelectListItem { Text = x.desc_cefalometria, Value = x.id_GrlCefalometrias.ToString() })
                  .ToList();
             }
             catch (Exception)
@@ -80,22 +80,33 @@ namespace GtecIt.Controllers
                 return Json(false);
 
             //Mapper.Map<BancoEditViewModel>(_uoW.Bancos.ObterTodos().FirstOrDefault(x => x.id_Fincdbanco == codigo));
-            var model2 = Mapper.Map<CefalometriaItemEditViewModel>(_uoW.CefalometriaItems.ObterTodos().FirstOrDefault(x => x.id_grldentista == Convert.ToInt32(model.id_grldentista) && x.id_GrlCefalometrias == Convert.ToInt32(model.id_GrlCefalometrias)));
-
-            if (model2 == null)
+            try
             {
-                //_uoW.Bancos.Salvar(Mapper.Map<Banco>(model));
-                _uoW.CefalometriaItems.Salvar(Mapper.Map<CefalometriaItem>(model));
-                _uoW.Complete();
+                var model2 =
+                    Mapper.Map<CefalometriaItemEditViewModel>(
+                        _uoW.CefalometriaItems.ObterTodos()
+                            .FirstOrDefault(
+                                x =>
+                                    x.id_grldentista ==model.id_grldentista &&
+                                    x.id_GrlCefalometrias == model.id_GrlCefalometrias));
+
+                if (model2 == null)
+                {
+                    //_uoW.Bancos.Salvar(Mapper.Map<Banco>(model));
+                    _uoW.CefalometriaItems.Salvar(Mapper.Map<CefalometriaItem>(model));
+                    _uoW.Complete();
+                }
+                else
+                {
+                    _uoW.CefalometriaItems.Atualizar(Mapper.Map<CefalometriaItem>(model2));
+                    _uoW.Complete();
+                    //_cefalometriaItemApp.Update(Mapper.Map<CefalometriaItem>(model2));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _uoW.CefalometriaItems.Atualizar(Mapper.Map<CefalometriaItem>(model2));
-                _uoW.Complete();
-                //_cefalometriaItemApp.Update(Mapper.Map<CefalometriaItem>(model2));
+
             }
-
-
 
             return Json(true);
         }
@@ -132,7 +143,7 @@ namespace GtecIt.Controllers
                 return Json(false);
             }
 
-            _uoW.Bancos.RemoverPorId(codigo);
+            _uoW.CefalometriaItems.RemoverPorId(codigo);
             _uoW.Complete();
 
             return Json(true);

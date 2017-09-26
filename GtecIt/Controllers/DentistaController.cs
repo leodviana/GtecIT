@@ -79,15 +79,16 @@ namespace GtecIt.Controllers
                 return View(model);
             }
 
-            var model2 = Mapper.Map<DentistaEditViewModel>(_uoW.Dentistas.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == Convert.ToInt32(model.Id_grlbasico)));
+            var model2 = Mapper.Map<DentistaEditViewModel>(_uoW.Dentistas.ObterPorId(Convert.ToInt32(model.Id_grlbasico)));
 
             if (model2 == null)
             {
-
+                var dentista = Mapper.Map<Dentista>(model);
                 //_dentistaApp.Add(Mapper.Map<Dentista>(model));
-                _uoW.Dentistas.Salvar(Mapper.Map<Dentista>(model));
+                _uoW.Dentistas.Salvar(dentista);
                 _uoW.Complete();
-                return RedirectToAction("Edit", new { codigo = _uoW.Dentistas.ObterTodos().LastOrDefault().id_grldentista });
+                var id_dentistas = dentista.id_grldentista;
+                return RedirectToAction("Edit", new { codigo = _uoW.Dentistas.ObterPorId(id_dentistas).id_grldentista });
             }
             else
             {
@@ -157,7 +158,7 @@ namespace GtecIt.Controllers
             }
 
             //_dentistaApp.Update(Mapper.Map<Dentista>(model));
-            _uoW.Dentistas.Salvar(Mapper.Map<Dentista>(model));
+            _uoW.Dentistas.Atualizar(Mapper.Map<Dentista>(model));
             _uoW.Complete();
 
             return RedirectToAction("Index");

@@ -210,6 +210,12 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Binders\DateTimeModelBinder.cs" />
     <Compile Include="Binders\DecimalModelBinder.cs" />
+    <Compile Include="Controllers\TituloController.cs" />
+    <Compile Include="Controllers\TipoTituloController.cs" />
+    <Compile Include="Controllers\TipoTelefoneController.cs" />
+    <Compile Include="Controllers\TipoPagamentoController.cs" />
+    <Compile Include="Controllers\SubGrupoController.cs" />
+    <Compile Include="Controllers\SexoController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\ProfissaoController.cs" />
     <Compile Include="Controllers\PrecoController.cs" />
@@ -572,6 +578,25 @@
     <Content Include="Views\Produto\Create.cshtml" />
     <Content Include="Views\Produto\Edit.cshtml" />
     <Content Include="Views\Produto\Index.cshtml" />
+    <Content Include="Views\Sexo\Create.cshtml" />
+    <Content Include="Views\Sexo\Edit.cshtml" />
+    <Content Include="Views\Sexo\Index.cshtml" />
+    <Content Include="Views\SubGrupo\Create.cshtml" />
+    <Content Include="Views\SubGrupo\Edit.cshtml" />
+    <Content Include="Views\SubGrupo\Index.cshtml" />
+    <Content Include="Views\TipoPagamento\Create.cshtml" />
+    <Content Include="Views\TipoPagamento\Edit.cshtml" />
+    <Content Include="Views\TipoPagamento\Index.cshtml" />
+    <Content Include="Views\TipoTelefone\Create.cshtml" />
+    <Content Include="Views\TipoTelefone\Edit.cshtml" />
+    <Content Include="Views\TipoTelefone\Index.cshtml" />
+    <Content Include="Views\TipoTitulo\Create.cshtml" />
+    <Content Include="Views\TipoTitulo\Edit.cshtml" />
+    <Content Include="Views\TipoTitulo\Index.cshtml" />
+    <Content Include="Views\Titulo\Create.cshtml" />
+    <Content Include="Views\Titulo\Edit.cshtml" />
+    <Content Include="Views\Titulo\Index.cshtml" />
+    <Content Include="Views\Titulo\Quitacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -583,12 +608,6 @@
     <Folder Include="Views\NotaEntrada\" />
     <Folder Include="Views\PedidoItem\" />
     <Folder Include="Views\Pedido\" />
-    <Folder Include="Views\Sexo\" />
-    <Folder Include="Views\SubGrupo\" />
-    <Folder Include="Views\TipoPagamento\" />
-    <Folder Include="Views\TipoTelefone\" />
-    <Folder Include="Views\TipoTitulo\" />
-    <Folder Include="Views\Titulo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

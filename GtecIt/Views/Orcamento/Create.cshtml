@@ -25,53 +25,41 @@
                     </div>
                     <div class="col-sm-2">
                         <label>Atendimento</label>
-                        @Html.TextBoxFor(x => x.Dt_orcamento, new { @class = "form-control datesimple", @autofocus = "autofocus", required = "required", @name = "Dt_orcamento", @id = "Dt_orcamento" })
+                        @Html.TextBoxFor(x => x.Dt_orcamento, new {@class = "form-control datesimple", @autofocus = "autofocus", required = "required", @name = "Dt_orcamento", @id = "Dt_orcamento"})
                     </div>
-                    <div class="col-sm-1">
 
-                        <label>Cod.</label>
-                        @Html.TextBoxFor(x => x.id_grlcliente, new { @class = "form-control", @name = "id_grlcliente", @id = "CodigoCliente", @data_url = @Url.Action("ObterDescricaoCliente", "Cliente"), onkeypress = "return SomenteNumero()", @required = "true" })
-                        @*<input type="text" class="form-control" id="CodigoCliente" name="id_Grlcliente" data-url="@Url.Action("ObterDescricaoCliente", "Cliente")" onkeypress=" return SomenteNumero() ">*@
-
-
-                    </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-8">
                         <label>Paciente</label>
                         <div class="input-group">
-                            @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control", @name = "NomeCliente", @required = "true" })
-                            @*<input type="text" readonly id="NomeCliente" name="NomeCliente" class="form-control">*@
+
+                            @Html.AutoCompleteFor(x => x.NomeCliente, "id_grlcliente", Model.id_grlcliente, Url.Action("AutoCompleteClientePreFetch", "Cliente"), "a", true, "iniciarListaCliente")
+                            
                             <div class="input-group-btn">
-                                <button type="button" id="open-Cliente" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>&nbsp;&nbsp;
+                                
                                 <a id="btnVoltar" href="@Url.Action("CreateCliente")" class=" btn btn-primary">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
                             </div>
-
                         </div>
+                        
                     </div>
+                    
 
                 </div>
                 <h1></h1>
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-6">
 
-                        <label>Cod.</label>
-
-                        @Html.TextBoxFor(x => x.Id_grldentista, new { @class = "form-control", @name = "Id_grldentista", @id = "CodigoDentista", @data_url = @Url.Action("ObterDescricaoDentista", "Dentista"), onkeypress = "return SomenteNumero()", @required = "true" })
-
-
-                    </div>
-
-                    <div class="col-sm-5">
                         <label>Dentista</label>
                         <div class="input-group">
-                            @Html.TextBoxFor(x => x.NomeDentista, new { @class = "form-control", @name = "NomeDentista", @required = "true" })
+                            @Html.AutoCompleteFor(x => x.NomeDentista, "Id_grldentista", Model.Id_grldentista, Url.Action("AutoCompleteDentistaPreFetch", "Dentista"), "a", true, "iniciarListaDentista")
                             <div class="input-group-btn">
-                                <button type="button" id="open-Dentista" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                                 <a id="btndentista" href="@Url.Action("CreateDentista")" class=" btn btn-primary">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
                             </div>
+
+
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -290,6 +278,8 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            iniciarListaCliente(); //Iniciando a lista manualmente  
+            iniciarListaDentista(); //Iniciando a lista manualmente  
             //  document.getElementById('CodigoProfissao').focus();
             ////  document.getElementById('nome').focus();
 

@@ -147,12 +147,13 @@ namespace GtecIt.Controllers
                 return View(model);
             }
             model.status = "0";
-            _uoW.Orcamentos.Salvar(Mapper.Map<Orcamento>(model));
+            var orcamento = Mapper.Map<Orcamento>(model);
+            _uoW.Orcamentos.Salvar(orcamento);
             _uoW.Complete();
-
+            var id_orcamento = orcamento.id_Stqcporcamento;
             //return Json(true);
 
-            return RedirectToAction("Edit", new { codigo = _uoW.Orcamentos.ObterTodos().Where(x => x.status.Equals("0")).LastOrDefault().id_Stqcporcamento });
+            return RedirectToAction("Edit", new { codigo = _uoW.Orcamentos.ObterTodos().FirstOrDefault(x =>x.id_Stqcporcamento==id_orcamento && x.status.Equals("0")).id_Stqcporcamento });
 
         }
 

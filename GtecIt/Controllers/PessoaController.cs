@@ -113,12 +113,16 @@ namespace GtecIt.Controllers
             {
                 // ferificar com o duan  porque nao aceita assim 
 
-                ClienteEditViewModel model_cliente = new ClienteEditViewModel {Id_grlbasico = idPessoa,Ativo = "S"};
-                var cliente = Mapper.Map<Cliente>(model_cliente);
-                _uoW.Clientes.Salvar(cliente);
+                Cliente  cliente2  = new Cliente();
+                cliente2.Id_grlbasico = idPessoa;
+                cliente2.Ativo = "S";
+                //
+                //ClienteEditViewModel model_cliente = new ClienteEditViewModel {Id_grlbasico = idPessoa,Ativo = "S"};
+                //var cliente = Mapper.Map<Cliente>(model_cliente);
+                _uoW.Clientes.Salvar(cliente2);
                 _uoW.Complete();
 
-                var idCliente = cliente.id_Grlcliente;
+                var idCliente = cliente2.id_Grlcliente;
 
                 //  _clienteApp.AddReturnId(new Cliente { Id_grlbasico = idPessoa, Ativo = "S" });
                 return RedirectToAction("Create", "Orcamento", new OrcamentoCreateViewModel { id_grlcliente = idCliente });
@@ -126,8 +130,9 @@ namespace GtecIt.Controllers
 
             if (model.OrcamentoEmAndamentodentista)
             {
-                DentistaEditViewModel model_dentista = new DentistaEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
-                var dentista = Mapper.Map<Dentista>(model_dentista);
+                Dentista dentista = new Dentista {Id_grlbasico = idPessoa, Ativo = "S"};
+                //DentistaEditViewModel model_dentista = new DentistaEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
+                //var dentista = Mapper.Map<Dentista>(model_dentista);
                 _uoW.Dentistas.Salvar(dentista);
                 _uoW.Complete();
                 var idDentista = dentista.id_grldentista;
@@ -138,21 +143,23 @@ namespace GtecIt.Controllers
 
             if (model.Dentista)
             {
-                var idDentista = _uoW.Pessoas.ObterTodos().LastOrDefault().Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
+                var idDentista = _uoW.Pessoas.ObterPorId(idPessoa).Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
                 return RedirectToAction("Create", "Dentista", new DentistaCreateViewModel { Id_grlbasico = idDentista });
             }
 
             if (model.Usuario)
             {
-                var idDentista = _uoW.Pessoas.ObterTodos().LastOrDefault().Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
+                var idDentista = _uoW.Pessoas.ObterPorId(idPessoa).Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
                 //var idDentista = _pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
                 return RedirectToAction("Create", "Login", new DentistaCreateViewModel { Id_grlbasico = idDentista, Ativo = "S" });
             }
 
             if (model.OrcamentoEmAndamentoedicao)
             {
-                ClienteEditViewModel model_cliente = new ClienteEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
-                var cliente = Mapper.Map<Cliente>(model_cliente);
+                Cliente cliente = new Cliente {Id_grlbasico = idPessoa, Ativo = "S"};
+
+                //ClienteEditViewModel model_cliente = new ClienteEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
+                //var cliente = Mapper.Map<Cliente>(model_cliente);
                 _uoW.Clientes.Salvar(cliente);
                 _uoW.Complete();
 

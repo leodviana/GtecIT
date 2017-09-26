@@ -8,6 +8,7 @@
 {
 
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Idgrlbasic.Id_grlbasico)
     <fieldset>
         <legend>@ViewBag.Title</legend>
         @if (!string.IsNullOrEmpty(ViewBag.Error))
