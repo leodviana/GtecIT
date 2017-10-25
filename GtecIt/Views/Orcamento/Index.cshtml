@@ -1,9 +1,10 @@
 ﻿@model GtecIt.ViewModels.OrcamentoIndexViewModel
 
+<h1></h1>
 @{
     ViewBag.Title = "Atendimento";
 }
-
+<h1></h1>
 
 @using (Html.BeginForm("Index", "Orcamento", FormMethod.Get, new { @class = "form-inline", @role = "form" }))
 {
@@ -11,7 +12,7 @@
     <fieldset>
         <legend>@ViewBag.Title</legend>
         <div class="form-group">
-            <label class="control-label">Atend.</label>
+            <label class="control-label">Atend. No.</label>
             @Html.TextBoxFor(x => x.id_Stqcporcamento, new { @class = "form-control", @placeholder = "ID Orçamento", @autofocus = "autofocus" })
         </div>
         <button name="tipoacao" type="submit" value="consultatodos" class="btn btn-primary">

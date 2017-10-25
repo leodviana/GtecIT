@@ -3,20 +3,40 @@ using System.Collections.Generic;
 
 namespace GtecIt.ViewModels
 {
-    public class NotaEntradaCreateViewModel 
+    public class NotaEntradaCreateViewModel
     {
-        public int Codigo { get; set; }
-        public int? TipoEntrada { get; set; }
-        public DateTime? DataEntrada { get; set; }
-        public int? CodigoFornecedor { get; set; }
-        public int? CodigoAlmoxarife { get; set; }
-        public int? CodigoCusto { get; set; }
-        public int? NumeroNotaFiscal { get; set; }
-        public string SerieNotaFiscal { get; set; }
-        public DateTime? DataEmissaoNotaFiscal { get; set; }
-        public int? TipoNota { get; set; }
-        public string HistoricoNotaFiscal { get; set; }
-        public int? CodigoUsuario { get; set; }
-        public List<NotaEntradaItemEditViewModel> NotaItemEntradas { get; set; }
+        public NotaEntradaCreateViewModel()
+        {
+           // this.titulosapagar = new List<Tituloapagar>();
+            //this.itens_entrada = new List<NotaEntradaItem>();
+        }
+
+        public int Id_stqnoten { get; set; }
+        public int? Id_stqtpent { get; set; }
+        public DateTime? dt_entrada { get; set; }
+        public int? Id_grlfornecedor { get; set; }
+
+        public string CodigoFornecedor { get; set; }
+        public string NomeFornecedor { get; set; }
+
+        public int? Id_stqalmox { get; set; }
+        public int? Id_grlcccust { get; set; }
+        public int? num_nf { get; set; }
+        public string serie_nf { get; set; }
+        public DateTime? dt_emissao_nf { get; set; }
+        public int? Id_stqtpnot { get; set; }
+        public string historico_nf { get; set; }
+        public int? Id_grlcdusu { get; set; }
+
+        public  decimal valor { get; set; }
+        public string status { get; set; }
+        //public virtual ICollection<Tituloapagar> titulosapagar { get; set; }
+        public virtual CentrodeCustoEditViewModel CentrodeCustos { get; set; }
+        //public virtual Usuario usuarios { get; set; }
+        public virtual FornecedorEditViewModel grlfornecedor { get; set; }
+        //public virtual stqalmox stqalmox { get; set; }
+        //public virtual ICollection<NotaEntradaItem> itens_entrada { get; set; }
+        //public virtual TipoEntrada TipoEntrada { get; set; }
+        //public virtual TipoNota TipoNotas { get; set; }
     }
 }

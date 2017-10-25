@@ -11,6 +11,7 @@ namespace GtecIt.Domain.Entities
         public Banco()
         {
             this.fintitrcs = new List<Titulo>();
+            this.fintitpgs= new List<Tituloapagar>();
         }
 
         public int id_Fincdbanco { get; set; }
@@ -18,5 +19,7 @@ namespace GtecIt.Domain.Entities
         public string desc_banco { get; set; }
         public Nullable<int> cd_usuario { get; set; }
         public virtual ICollection<Titulo> fintitrcs { get; set; }
+
+        public virtual ICollection<Tituloapagar> fintitpgs { get; set; }
     }
 }

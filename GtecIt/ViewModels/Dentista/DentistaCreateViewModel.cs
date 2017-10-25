@@ -10,6 +10,15 @@ namespace GtecIt.ViewModels
             this.Orcamentos = new List<OrcamentoEditViewModel>();
         }
 
+        public long orcamentoid { get; set; }
+
+        #region boelanos para navegacao 
+
+        public bool  dentista_em_cadastro { get; set;}
+        
+
+        #endregion
+
         public int id_grldentista { get; set; }
         public int? Id_grlbasico { get; set; }
         //public string cd_usuario { get; set; }

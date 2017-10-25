@@ -16,20 +16,31 @@ namespace GtecIt.ViewModels
             DropdownEstado = new List<SelectListItem>();
         }
 
-
-
         public long orcamentoid { get; set; }
+
+        #region boelanos para navegacao 
+
 
         public bool OrcamentoEmAndamento { get; set; }
 
+        public bool cliente_em_cadastro { get; set; }
+
+        public bool fornecedor_em_cadastro { get; set; }
 
         public bool OrcamentoEmAndamentoedicao { get; set; }
 
         public bool OrcamentoEmAndamentodentista { get; set; }
 
+
+        //boleano para navegacao do cadastro de dentista para pessoa fisica 
         public bool Dentista { get; set; }
+        public bool fornecedor { get; set; }
+
+        //boleano para navegacao do orcamento para dentista para pessoa fisica 
+        public bool dentista_em_cadastro { get; set; }
 
         public bool Usuario { get; set; }
+        #endregion
 
         public int Id_grlbasico { get; set; }
         [Required(ErrorMessage = "*")]

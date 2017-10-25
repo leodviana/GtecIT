@@ -83,17 +83,24 @@ namespace GtecIt.Controllers
 
         public ActionResult CreateCliente()
         {
-            return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { OrcamentoEmAndamento = true });
+            return RedirectToAction("Create", "Cliente", new ClienteCreateViewModel { cliente_em_cadastro = true });
         }
 
         public ActionResult CreateClienteEdicao(long orcamento_id)
         {
-            return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { OrcamentoEmAndamentoedicao = true, orcamentoid = orcamento_id });
-        }
 
+            return RedirectToAction("Create", "Cliente", new ClienteCreateViewModel { cliente_em_cadastro = true, orcamentoid = orcamento_id });
+            
+        }
+        public ActionResult CreatedentistaEdicao(long orcamento_id)
+        {
+
+            return RedirectToAction("Create", "Dentista", new DentistaCreateViewModel { dentista_em_cadastro = true, orcamentoid = orcamento_id });
+        }
         public ActionResult CreateDentista()
         {
-            return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { OrcamentoEmAndamentodentista = true });
+            // return RedirectToAction("Create", "Dentista", new PessoaCreateViewModel { OrcamentoEmAndamentodentista = true });
+            return RedirectToAction("Create", "Dentista",new DentistaCreateViewModel { dentista_em_cadastro = true});
         }
 
         public ActionResult Create(OrcamentoCreateViewModel model)

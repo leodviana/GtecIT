@@ -11,7 +11,7 @@ namespace GtecIt.Domain.Entities
         public Produto()
         {
             //this.stqitorcamentoes = new List<stqitorcamento>();
-            //this.stqentras = new List<stqentra>();
+            this.ItensEntrada = new List<NotaEntradaItem>();
         }
 
         public int Id_stqcdprd { get; set; }
@@ -39,5 +39,6 @@ namespace GtecIt.Domain.Entities
         public virtual SubGrupo subgrupos { get; set; }
 
         public virtual ICollection<Preco> precos { get; set; }
+        public virtual ICollection<NotaEntradaItem> ItensEntrada { get; set; }
     }
 }

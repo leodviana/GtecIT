@@ -52,6 +52,8 @@ namespace GtecIt.Domain.Entities
         public virtual ICollection<Dentista> dentistas { get; set; }
         public virtual ICollection<Convenio> convenios { get; set; }
         public virtual ICollection<Usuario> usuarios { get; set; }
+
+        public virtual ICollection<Fornecedor> Fornecedores { get; set; }
     }
     
 }

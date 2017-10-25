@@ -43,6 +43,7 @@
     <Compile Include="Entities\Banco.cs" />
     <Compile Include="Entities\Cefalometria.cs" />
     <Compile Include="Entities\CefalometriaItem.cs" />
+    <Compile Include="Entities\CentrodeCusto.cs" />
     <Compile Include="Entities\Class1.cs" />
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\Convenio.cs" />
@@ -65,10 +66,13 @@
     <Compile Include="Entities\Relatorio.cs" />
     <Compile Include="Entities\Sexo.cs" />
     <Compile Include="Entities\Subgrupo.cs" />
+    <Compile Include="Entities\TipoEntrada.cs" />
+    <Compile Include="Entities\TipoNota.cs" />
     <Compile Include="Entities\TipoPagamento.cs" />
     <Compile Include="Entities\TipoTelefone.cs" />
     <Compile Include="Entities\TipoTitulo.cs" />
     <Compile Include="Entities\Titulo.cs" />
+    <Compile Include="Entities\Tituloapagar.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,6 +11,11 @@ namespace GtecIt.ViewModels
             this.Orcamentos = new List<OrcamentoEditViewModel>();
         }
 
+
+        public long orcamentoid { get; set; }
+        public bool cliente_em_cadastro { get; set; }
+        public string NomeCliente { get; set; }
+
         public int id_Grlcliente { get; set; }
         public int? Id_grlbasico { get; set; }
         public string cd_usuario { get; set; }

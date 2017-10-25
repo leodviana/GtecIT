@@ -79,8 +79,8 @@ namespace GtecIt.Controllers
                 return View(model);
             }
 
-            var model2 = Mapper.Map<DentistaEditViewModel>(_uoW.Dentistas.ObterPorId(Convert.ToInt32(model.Id_grlbasico)));
-
+            //var model2 = Mapper.Map<DentistaEditViewModel>(_uoW.Dentistas.ObterPorId(Convert.ToInt32(model.Id_grlbasico)));
+            var model2 = _uoW.Dentistas.ObterTodos().FirstOrDefault(x=>x.Id_grlbasico==model.Id_grlbasico);
             if (model2 == null)
             {
                 var dentista = Mapper.Map<Dentista>(model);
@@ -88,14 +88,32 @@ namespace GtecIt.Controllers
                 _uoW.Dentistas.Salvar(dentista);
                 _uoW.Complete();
                 var id_dentistas = dentista.id_grldentista;
+                if (model.dentista_em_cadastro )
+                {
+                    if (model.orcamentoid==0)
+                      return RedirectToAction("Create", "Orcamento");
+                    else
+                      return RedirectToAction("Edit", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+
+                }
                 return RedirectToAction("Edit", new { codigo = _uoW.Dentistas.ObterPorId(id_dentistas).id_grldentista });
             }
             else
             {
                 model2.Ativo = model.Ativo;
                 //_dentistaApp.Update(Mapper.Map<Dentista>(model2));
-                _uoW.Dentistas.Atualizar(Mapper.Map<Dentista>(model));
+                _uoW.Dentistas.Atualizar(model2);
                 _uoW.Complete();
+                if (model.dentista_em_cadastro)
+                {
+                    if (model.orcamentoid == 0)
+                        return RedirectToAction("Create", "Orcamento");
+                    else
+                        return RedirectToAction("Edit", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+
+                }
+
+
                 return RedirectToAction("Edit", new { codigo = model2.id_grldentista });
             }
 
@@ -104,10 +122,18 @@ namespace GtecIt.Controllers
 
         }
 
-        public ActionResult CreateDentista()
+        public ActionResult CreateDentista(string origem ,long orcamentoid)
         {
-            return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { Dentista = true });
-        }
+            if (origem.Equals("dentista"))
+            {
+                return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { dentista_em_cadastro = true ,orcamentoid = orcamentoid});
+            }
+            else
+            {
+                return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { Dentista = true, orcamentoid = orcamentoid });
+            }
+              
+         }
 
 
         public ActionResult Edit(int codigo)
@@ -192,7 +218,7 @@ namespace GtecIt.Controllers
             try
             {
                 //_dentistaApp.Update(Mapper.Map<Dentista>(model));
-                _uoW.Dentistas.Salvar(Mapper.Map<Dentista>(model));
+                _uoW.Dentistas.Atualizar(Mapper.Map<Dentista>(model));
                 _uoW.Complete();
             }
             catch (Exception)
@@ -293,7 +319,7 @@ namespace GtecIt.Controllers
                 var resultado = _uoW.Dentistas.ObterTodos().Select(x =>
                 new
                 {
-                    Isn = x.id_grldentista.ToString(),
+                    Id = x.id_grldentista.ToString(),
                     Codigo = x.id_grldentista.ToString(),
                     Descricao = x.Idgrlbasic.nome.ToString(),
                 }).ToList();

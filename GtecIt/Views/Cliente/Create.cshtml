@@ -1,5 +1,6 @@
 ﻿@model GtecIt.ViewModels.ClienteCreateViewModel
 
+<h1></h1>
 @{
     ViewBag.Title = "Incluir - Cliente";
 }
@@ -8,6 +9,8 @@
 {
 
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.cliente_em_cadastro)
+    @Html.HiddenFor(x => x.orcamentoid)
     <fieldset>
         <legend>@ViewBag.Title</legend>
         @if (!string.IsNullOrEmpty(ViewBag.Error))
@@ -21,68 +24,97 @@
                 Dados Gerais
             </div>
             <div class="panel-body">
-                
-                    <div class="row">
 
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label>Codigo Básico</label>
-                                <input type="text" class="form-control" id="CodigoPessoa" name="id_grlbasico" data-url="@Url.Action("ObterDescricaonome", "Pessoa")" onkeypress=" return SomenteNumero() ">
+                <div class="row">
 
-                            </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Codigo Básico</label>
+
+                            @Html.TextBoxFor(x => x.Id_grlbasico, new { @class = "form-control ", @name = "CodigoPessoa", @id = "CodigoPessoa", data_url = @Url.Action("ObterDescricaonome", "Pessoa"), onkeypress = "return SomenteNumero()" })
                         </div>
-                        <div class="col-sm-4">
-                            <label>Nome</label>
-                            <div class="input-group">
+                    </div>
+                    <div class="col-sm-9">
+                        <label>Nome</label>
+                        <div class="input-group">
 
-                                <input type="text" readonly id="NomePessoa" name="NomePessoa" class="form-control">
-                                <div class="input-group-btn">
+                            @Html.TextBoxFor(x => x.NomeCliente, new { @class = "form-control ", @name = "NomePessoa", @id = "NomePessoa", @readonly = "true" })
+                            <div class="input-group-btn">
+                                @if (Model.cliente_em_cadastro)
+                                {
                                     <button type="button" id="open-Pessoa" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                                    <a id="btndentista" href="@Url.Action("CreateCliente", "Cliente", new {origem = "cliente",orcamentoid = Model.orcamentoid})" class=" btn btn-primary">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                }
+                                else
+                                {
 
-                                </div>
+                                    <button type="button" id="open-Pessoa" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                                    <a id="btndentista" href="@Url.Action("CreateCliente", "Cliente", new {origem = "pessoa",orcamentoid = Model.orcamentoid})" class=" btn btn-primary">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                }
                             </div>
                         </div>
-                        <div class="col-sm-3">
-
-                            <label>Contato</label>
-
-                            <input type="text" class="form-control" name="contato" readonly id="contato">
-
-                        </div>
-                        <div class="col-sm-3">
-
-                            <label>Email</label>
-
-                            <input type="text" class="form-control" name="email" readonly id="email">
-
-                        </div>
                     </div>
-                    <div class="row">
 
-                        <div class="col-sm-4">
-                            <label>Email 02</label>
-                            <input type="text" class="form-control" readonly id="email2" name="email2">
-                        </div>
-                        <div class="col-sm-3">
-                            <label>Telefone 01</label>
-                            <input type="text" class="form-control fone" readonly id="fone01" name="fone01">
-                        </div>
 
-                        <div class="col-sm-3">
-                            <label>Telefone02</label>
-                            <input type="text" class="form-control fone" name="fone02" readonly id="fone02">
-                        </div>
+                </div>
+                <div class="row">
 
-                       
-                        <div class="col-sm-2">
-                            <label>Ativo</label>
-                            @Html.DropDownListFor(x => x.Ativo, Model.Dropdownativo, new { @class = "form-control", @required = "true" })
-                        </div>
+                    <div class="col-sm-4">
+
+                        <label>Contato</label>
+
+                        <input type="text" class="form-control" name="contato" readonly id="contato">
 
                     </div>
-                
-            
+                    <div class="col-sm-4">
 
+                        <label>Email</label>
+
+                        <input type="text" class="form-control" name="email" readonly id="email">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Email 02</label>
+                        <input type="text" class="form-control" readonly id="email2" name="email2">
+                    </div>
+
+
+                </div>
+                <h1></h1>
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <label>Cpf</label>
+                        <input type="text" class="form-control fone" readonly id="cpf" name="cpf">
+                    </div>
+                    <div class="col-sm-2">
+                        <label>RG</label>
+                        <input type="text" class="form-control fone" readonly id="rg" name="rg">
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Telefone 01</label>
+                        <input type="text" class="form-control fone" readonly id="fone01" name="fone01">
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label>Telefone02</label>
+                        <input type="text" class="form-control fone" name="fone02" readonly id="fone02">
+                    </div>
+
+
+                    <div class="col-sm-2">
+                        <label>Ativo</label>
+                        @Html.DropDownListFor(x => x.Ativo, Model.Dropdownativo, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+
+
+
+            </div>
         </div>
         <h1></h1>
 

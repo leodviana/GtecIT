@@ -56,11 +56,17 @@ namespace GtecIt.Controllers
 
         }
 
-        public ActionResult Create()
+        public ActionResult Create(ClienteCreateViewModel model , string teste)
         {
-            var model = new ClienteCreateViewModel();
+            
+            if (model.Id_grlbasico != null && model.Id_grlbasico > 0)
+            {
 
-
+                var pessoa = _uoW.Pessoas.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == model.Id_grlbasico);
+                //var pessoa = _pessoaApp.GetAll().FirstOrDefault(x => x.clientes.Any(y => y.id_Grlcliente == model.id_grlcliente));
+                //model.CodigoCliente = cliente.id_Grlcliente.ToString();
+                model.NomeCliente= pessoa.nome;
+            }
             return View(model);
         }
 
@@ -82,28 +88,75 @@ namespace GtecIt.Controllers
                 return View(model);
             }
 
-            var model2 = Mapper.Map<ClienteEditViewModel>(_uoW.Clientes.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == model.Id_grlbasico));
-
+            //var model2 = Mapper.Map<ClienteEditViewModel>(_uoW.Clientes.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == model.Id_grlbasico));
+            var model2 = _uoW.Clientes.ObterTodos().FirstOrDefault(x => x.Id_grlbasico == model.Id_grlbasico);
             if (model2 == null)
             {
-
-                
-               _uoW.Clientes.Salvar(Mapper.Map<Cliente>(model));
+                var cliente = Mapper.Map<Cliente>(model);
+                //_dentistaApp.Add(Mapper.Map<Dentista>(model));
+                _uoW.Clientes.Salvar(cliente);
                 _uoW.Complete();
+                var id_clientes = cliente.id_Grlcliente;
+                if (model.cliente_em_cadastro)
+                {
+                    if (model.orcamentoid == 0)
+                        return RedirectToAction("Create", "Orcamento");
+                    else
+                        return RedirectToAction("Edit", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+
+                }
+                //if (model.cliente_em_cadastro)
+
+                //  return RedirectToAction("Create", "Orcamento");
+
+                return RedirectToAction("Edit", new { codigo = _uoW.Clientes.ObterPorId(id_clientes).id_Grlcliente });
+
+               
             }
             else
             {
-                //_clienteApp.Update(Mapper.Map<Cliente>(model2));
-                _uoW.Clientes.Atualizar(Mapper.Map<Cliente>(model));
+
+                model2.Ativo = model.Ativo;
+                //_dentistaApp.Update(Mapper.Map<Dentista>(model2));
+                _uoW.Clientes.Atualizar(model2);
                 _uoW.Complete();
+
+                if (model.cliente_em_cadastro)
+                {
+                    if (model.orcamentoid == 0)
+                        return RedirectToAction("Create", "Orcamento");
+                    else
+                        return RedirectToAction("Edit", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+
+                }
+               // if (model.cliente_em_cadastro)
+
+                 //   return RedirectToAction("Create", "Orcamento");
+
+                return RedirectToAction("Edit", new { codigo = model2.id_Grlcliente });
+                
             }
 
-            return RedirectToAction("Index");
+           // return RedirectToAction("Index");
             //return RedirectToAction("Edit", new { codigo =_pessoaApp.GetAll().LastOrDefault().Id_grlbasico});
         }
 
 
+        public ActionResult CreateCliente(string origem,long orcamentoid)
+        {
+            if (origem.Equals("cliente"))
+            {
+                return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { cliente_em_cadastro = true, orcamentoid = orcamentoid });
+            }
+            else
+            {
+                return RedirectToAction("Create", "Pessoa", new PessoaCreateViewModel { cliente_em_cadastro = true, orcamentoid = orcamentoid });
+            }
 
+
+
+
+        }
 
         public ActionResult Edit(int codigo)
         {
@@ -269,6 +322,7 @@ namespace GtecIt.Controllers
                 var resultado = _uoW.Clientes.ObterTodos().Select(x =>
                 new
                 {
+                           
                     Id = x.id_Grlcliente.ToString(),
                     Codigo = x.id_Grlcliente.ToString(),
                     Descricao = x.grlbasic.nome.ToString(),

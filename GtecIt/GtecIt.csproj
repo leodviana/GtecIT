@@ -210,6 +210,9 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Binders\DateTimeModelBinder.cs" />
     <Compile Include="Binders\DecimalModelBinder.cs" />
+    <Compile Include="Controllers\FornecedorController.cs" />
+    <Compile Include="Controllers\CentrodeCustoController.cs" />
+    <Compile Include="Controllers\NotaEntradaController.cs" />
     <Compile Include="Controllers\TituloController.cs" />
     <Compile Include="Controllers\TipoTituloController.cs" />
     <Compile Include="Controllers\TipoTelefoneController.cs" />
@@ -338,6 +341,10 @@
     <Compile Include="ViewModels\Cefalometria\CefalometriaEditViewModel.cs" />
     <Compile Include="ViewModels\Cefalometria\CefalometriaGridViewModel.cs" />
     <Compile Include="ViewModels\Cefalometria\CefalometriaIndexViewModel.cs" />
+    <Compile Include="ViewModels\Centro de Custo\CentrodeCustoCreateViewModel.cs" />
+    <Compile Include="ViewModels\Centro de Custo\CentrodeCustoEditViewModel.cs" />
+    <Compile Include="ViewModels\Centro de Custo\CentrodeCustoGridViewModel.cs" />
+    <Compile Include="ViewModels\Centro de Custo\CentrodeCustoIndexViewModel.cs" />
     <Compile Include="ViewModels\Cliente\ClienteCreateViewModel.cs" />
     <Compile Include="ViewModels\Cliente\ClienteEditViewModel.cs" />
     <Compile Include="ViewModels\Cliente\ClienteGridViewModel.cs" />
@@ -374,6 +381,8 @@
     <Compile Include="ViewModels\MensagemAuxiliarViewModel.cs" />
     <Compile Include="ViewModels\NotaEntradaItem\NotaEntradaItemCreateViewModel.cs" />
     <Compile Include="ViewModels\NotaEntradaItem\NotaEntradaItemEditViewModel.cs" />
+    <Compile Include="ViewModels\NotaEntradaItem\NotaEntradaItemGridViewModel.cs" />
+    <Compile Include="ViewModels\NotaEntradaItem\NotaEntradaItemIndexViewModel.cs" />
     <Compile Include="ViewModels\NotaEntrada\NotaEntradaCreateViewModel.cs" />
     <Compile Include="ViewModels\NotaEntrada\NotaEntradaEditViewModel.cs" />
     <Compile Include="ViewModels\NotaEntrada\NotaEntradaGridViewModel.cs" />
@@ -432,6 +441,10 @@
     <Compile Include="ViewModels\TipoTitulo\TipoTituloEditViewModel.cs" />
     <Compile Include="ViewModels\TipoTitulo\TipoTituloGridViewModel.cs" />
     <Compile Include="ViewModels\TipoTitulo\TipoTituloIndexViewModel.cs" />
+    <Compile Include="ViewModels\Tituloapagar\TituloapagarCreateViewModel.cs" />
+    <Compile Include="ViewModels\Tituloapagar\TituloapagarEditViewModel.cs" />
+    <Compile Include="ViewModels\Tituloapagar\TituloapagarGridViewModel.cs" />
+    <Compile Include="ViewModels\Tituloapagar\TituloapagarIndexViewModel.cs" />
     <Compile Include="ViewModels\Titulo\TituloCreateViewModel.cs" />
     <Compile Include="ViewModels\Titulo\TituloEditViewModel.cs" />
     <Compile Include="ViewModels\Titulo\TituloGridViewModel.cs" />
@@ -484,6 +497,18 @@
     <Content Include="Scripts\dataTables.bootstrap.js" />
     <Content Include="Scripts\dataTables.responsive.js" />
     <Content Include="Scripts\defaults.js" />
+    <Content Include="Scripts\gtec\modal.cliente.js" />
+    <Content Include="Scripts\gtec\modal.dentista.js" />
+    <Content Include="Scripts\gtec\modal.estado.js" />
+    <Content Include="Scripts\gtec\modal.fornecedor.js" />
+    <Content Include="Scripts\gtec\modal.Grupo.js" />
+    <Content Include="Scripts\gtec\modal.pessoa.js" />
+    <Content Include="Scripts\gtec\modal.produto.js" />
+    <Content Include="Scripts\gtec\modal.profissao.js" />
+    <Content Include="Scripts\gtec\modal.sexo.js" />
+    <Content Include="Scripts\gtec\modal.SubGrupo.js" />
+    <Content Include="Scripts\gtec\modal.tipotelefone.js" />
+    <Content Include="Scripts\gtec\modal.tpfone2.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
@@ -597,15 +622,22 @@
     <Content Include="Views\Titulo\Edit.cshtml" />
     <Content Include="Views\Titulo\Index.cshtml" />
     <Content Include="Views\Titulo\Quitacao.cshtml" />
+    <Content Include="Views\Pessoa\Pesquisa.cshtml" />
+    <Content Include="Views\Fornecedor\Create.cshtml" />
+    <Content Include="Views\Fornecedor\Edit.cshtml" />
+    <Content Include="Views\Fornecedor\Index.cshtml" />
+    <Content Include="Views\CentrodeCusto\Create.cshtml" />
+    <Content Include="Views\CentrodeCusto\Edit.cshtml" />
+    <Content Include="Views\CentrodeCusto\Index.cshtml" />
+    <Content Include="Views\NotaEntrada\Index.cshtml" />
+    <Content Include="Views\NotaEntrada\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\datetimepicker\" />
-    <Folder Include="Scripts\gtec\" />
     <Folder Include="temp\" />
     <Folder Include="ViewModels\NewFolder1\" />
     <Folder Include="Views\NotaEntradaItem\" />
-    <Folder Include="Views\NotaEntrada\" />
     <Folder Include="Views\PedidoItem\" />
     <Folder Include="Views\Pedido\" />
   </ItemGroup>

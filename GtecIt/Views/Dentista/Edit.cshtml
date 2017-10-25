@@ -1,5 +1,5 @@
 ﻿@model GtecIt.ViewModels.DentistaEditViewModel
-
+<h1></h1>
 @{
     ViewBag.Title = "Edição - Dentista";
 }
@@ -24,7 +24,7 @@
             <div class="panel-body">
                 <div class="row">
                     @Html.HiddenFor(x => x.id_grldentista)
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label>Codigo Básico</label>
 
@@ -32,7 +32,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-9">
                         <label>Nome</label>
                         <div class="input-group">
 
@@ -43,42 +43,60 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
 
                         <label>Contato</label>
 
-                        @Html.TextBoxFor(x => x.Idgrlbasic.contato, new { @class = "form-control ", @name = "contato", @id = "contato", @readonly = "true" })
+                        @Html.TextBoxFor(x => x.Idgrlbasic.contato, new {@class = "form-control ", @name = "contato", @id = "contato", @readonly = "true"})
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
 
                         <label>Email</label>
 
-                        @Html.TextBoxFor(x => x.Idgrlbasic.email, new { @class = "form-control ", @name = "email", @id = "email", @readonly = "true" })
+                        @Html.TextBoxFor(x => x.Idgrlbasic.email, new {@class = "form-control ", @name = "email", @id = "email", @readonly = "true"})
 
                     </div>
-                </div>
-                <div class="row">
-
                     <div class="col-sm-4">
                         <label>Email 02</label>
-                        @Html.TextBoxFor(x => x.Idgrlbasic.Email2, new { @class = "form-control ", @name = "email2", @id = "email2", @readonly = "true" })
+                        @Html.TextBoxFor(x => x.Idgrlbasic.Email2, new {@class = "form-control ", @name = "email2", @id = "email2", @readonly = "true"})
                     </div>
-                    <div class="col-sm-3">
+                    
+                </div>
+
+                <h1></h1>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>CPF</label>
+                        @Html.TextBoxFor(x => x.Idgrlbasic.cpf,new {@class = "form-control ", @name = "cpf", @id = "cpf", @readonly = "true"})
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>RG</label>
+                        @Html.TextBoxFor(x => x.Idgrlbasic.rg, new { @class = "form-control ", @name = "rg", @id = "rg", @readonly = "true" })
+                    </div>
+                    <div class="col-sm-2">
                         <label>Telefone 01</label>
                         @Html.TextBoxFor(x => x.Idgrlbasic.ddd_telefone, new { @class = "form-control ", @name = "fone01", @id = "fone01", @readonly = "true" })
                     </div>
+                    <div class="col-sm-2">
+                        <label>Telefone 01</label>
+                        @Html.TextBoxFor(x => x.Idgrlbasic.ddd_telefone, new {@class = "form-control ", @name = "fone01", @id = "fone01", @readonly = "true"})
+                    </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <label>Telefone02</label>
-                        @Html.TextBoxFor(x => x.Idgrlbasic.ddd_telefone2, new { @class = "form-control ", @name = "fone02", @id = "fone02", @readonly = "true" })
+                        @Html.TextBoxFor(x => x.Idgrlbasic.ddd_telefone2, new {@class = "form-control ", @name = "fone02", @id = "fone02", @readonly = "true"})
                     </div>
 
 
 
                     <div class="col-sm-2">
                         <label>Ativo</label>
-                        @Html.DropDownListFor(x => x.Ativo, Model.Dropdownativo, new { @class = "form-control", @required = "true" })
+                        @Html.DropDownListFor(x => x.Ativo, Model.Dropdownativo, new {@class = "form-control", @required = "true"})
                     </div>
                 </div>
             </div>

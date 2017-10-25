@@ -1,5 +1,7 @@
 ﻿@model GtecIt.ViewModels.PessoaCreateViewModel
 
+<h1></h1>
+
 @{
     ViewBag.Title = "Incluir - Cadastro Básico";
 }
@@ -12,8 +14,12 @@
     @Html.HiddenFor(x => x.OrcamentoEmAndamentoedicao)
     @Html.HiddenFor(x => x.OrcamentoEmAndamentodentista)
     @Html.HiddenFor(x => x.Dentista)
+    @Html.HiddenFor(x => x.fornecedor)
+    @Html.HiddenFor(x => x.fornecedor_em_cadastro)
     @Html.HiddenFor(x => x.Usuario)
     @Html.HiddenFor(x => x.orcamentoid)
+    @Html.HiddenFor(x => x.dentista_em_cadastro)
+    @Html.HiddenFor(x => x.cliente_em_cadastro)
     <fieldset>
         <legend>@ViewBag.Title</legend>
         @if (!string.IsNullOrEmpty(ViewBag.Error))

@@ -147,6 +147,12 @@ namespace GtecIt.Controllers
                 return RedirectToAction("Create", "Dentista", new DentistaCreateViewModel { Id_grlbasico = idDentista });
             }
 
+            if (model.fornecedor)
+            {
+                var idDentista = _uoW.Pessoas.ObterPorId(idPessoa).Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
+                return RedirectToAction("Create", "Fornecedor", new FornecedorCreateViewModel { Id_grlbasic = idDentista });
+            }
+
             if (model.Usuario)
             {
                 var idDentista = _uoW.Pessoas.ObterPorId(idPessoa).Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
@@ -166,6 +172,53 @@ namespace GtecIt.Controllers
                 var idCliente = cliente.id_Grlcliente;
                 //var idCliente = _clienteApp.AddReturnId(new Cliente { Id_grlbasico = idPessoa, Ativo = "S" });
                 return RedirectToAction("Edit", "Orcamento", new { id_grlcliente = idCliente, codigo = Convert.ToInt32(model.orcamentoid) });
+            }
+            if (model.dentista_em_cadastro)
+            {
+                Dentista dentista = new Dentista { Id_grlbasico = idPessoa, Ativo = "S" };
+                //DentistaEditViewModel model_dentista = new DentistaEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
+                //var dentista = Mapper.Map<Dentista>(model_dentista);
+                _uoW.Dentistas.Salvar(dentista);
+                _uoW.Complete();
+                var idDentista = dentista.id_grldentista;
+                //return RedirectToAction("Create", "Dentista", new DentistaCreateViewModel { Id_grlbasico = idDentista ,dentista_em_cadastro = true,orcamentoid =model.orcamentoid});
+                if (model.orcamentoid==0)
+                    return RedirectToAction("Create", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+                else
+
+                  return RedirectToAction("Edit", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+            }
+            if (model.cliente_em_cadastro)
+            {
+                Cliente cliente = new Cliente { Id_grlbasico = idPessoa, Ativo = "S" };
+
+                //ClienteEditViewModel model_cliente = new ClienteEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
+                //var cliente = Mapper.Map<Cliente>(model_cliente);
+                _uoW.Clientes.Salvar(cliente);
+                _uoW.Complete();
+
+                var idCliente = cliente.id_Grlcliente;
+                if (model.orcamentoid==0)
+                    return RedirectToAction("Create", "Orcamento");
+                else
+                  return RedirectToAction("Edit", "Orcamento", new { id_grlcliente = idCliente, codigo = Convert.ToInt32(model.orcamentoid) });
+                //var idCliente= _uoW.Pessoas.ObterPorId(idPessoa).Id_grlbasico; //_pessoaApp.GetAll().LastOrDefault().Id_grlbasico;
+                // return RedirectToAction("Create", "Cliente", new ClienteCreateViewModel { Id_grlbasico = idCliente, cliente_em_cadastro = true });
+            }
+            if (model.fornecedor_em_cadastro)
+            {
+                Fornecedor dentista = new Fornecedor { Id_grlbasic = idPessoa, Ativo = "S" };
+                //DentistaEditViewModel model_dentista = new DentistaEditViewModel { Id_grlbasico = idPessoa, Ativo = "S" };
+                //var dentista = Mapper.Map<Dentista>(model_dentista);
+                _uoW.Fornecedores.Salvar(dentista);
+                _uoW.Complete();
+                var idDentista = dentista.Id_grlfornecedor;
+                //return RedirectToAction("Create", "Dentista", new DentistaCreateViewModel { Id_grlbasico = idDentista ,dentista_em_cadastro = true,orcamentoid =model.orcamentoid});
+                if (model.orcamentoid == 0)
+                    return RedirectToAction("Create", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
+                else
+
+                    return RedirectToAction("Edit", "Orcamento", new { codigo = Convert.ToInt32(model.orcamentoid) });
             }
             return RedirectToAction("Edit", new { codigo = idPessoa });
         }
@@ -351,6 +404,10 @@ namespace GtecIt.Controllers
             //return fornecedor == null ? Json(false, JsonRequestBehavior.AllowGet) : Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
+
+
+      
+
         public ActionResult ObterPessoa(string tipoConsulta, string filtro)
         {
             string html = "";
@@ -415,6 +472,27 @@ namespace GtecIt.Controllers
             }
 
             return Json(html);
+        }
+        public JsonResult AutoCompletePessoaPreFetch()
+        {
+            try
+            {
+                var resultado = _uoW.Pessoas.ObterTodos().Select(x =>
+                new
+                {
+                    Id = x.Id_grlbasico.ToString(),
+                    Codigo = x.Id_grlbasico.ToString(),
+                    Descricao = x.nome.ToString(),
+                }).ToList();
+
+                return Json(new { success = true, results = resultado }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 

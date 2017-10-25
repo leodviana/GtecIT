@@ -68,19 +68,27 @@ namespace GtecIt.App_Start
             Mapper.CreateMap<Endereco, EnderecoEditViewModel>().ReverseMap();
             Mapper.CreateMap<Endereco, EnderecoCreateViewModel>().ReverseMap();
 
+            Mapper.CreateMap<CentrodeCusto, CentrodeCustoIndexViewModel>().ReverseMap();
+            Mapper.CreateMap<CentrodeCusto, CentrodeCustoGridViewModel>().ReverseMap();
+            Mapper.CreateMap<CentrodeCusto, CentrodeCustoEditViewModel>().ReverseMap();
+            Mapper.CreateMap<CentrodeCusto, CentrodeCustoCreateViewModel>().ReverseMap();
 
             Mapper.CreateMap<NotaEntrada, NotaEntradaIndexViewModel>().ReverseMap();
             Mapper.CreateMap<NotaEntrada, NotaEntradaGridViewModel>().ReverseMap();
             Mapper.CreateMap<NotaEntrada, NotaEntradaEditViewModel>().ReverseMap();
             Mapper.CreateMap<NotaEntrada, NotaEntradaCreateViewModel>().ReverseMap();
 
+            Mapper.CreateMap<NotaEntradaItem, NotaEntradaItemCreateViewModel>().ReverseMap();
+            Mapper.CreateMap<NotaEntradaItem, NotaEntradaItemEditViewModel>().ReverseMap();
+            Mapper.CreateMap<NotaEntradaItem, NotaEntradaItemIndexViewModel>().ReverseMap();
+            Mapper.CreateMap<NotaEntradaItem, NotaEntradaItemGridViewModel>().ReverseMap();
+
             Mapper.CreateMap<Fornecedor, FornecedorIndexViewModel>().ReverseMap();
             Mapper.CreateMap<Fornecedor, FornecedorGridViewModel>().ReverseMap();
             Mapper.CreateMap<Fornecedor, FornecedorEditViewModel>().ReverseMap();
             Mapper.CreateMap<Fornecedor, FornecedorCreateViewModel>().ReverseMap();
 
-            Mapper.CreateMap<NotaEntradaItem, NotaEntradaItemCreateViewModel>().ReverseMap();
-            Mapper.CreateMap<NotaEntradaItem, NotaEntradaItemEditViewModel>().ReverseMap();
+           
 
             Mapper.CreateMap<Pedido, PedidoIndexViewModel>().ReverseMap();
             Mapper.CreateMap<Pedido, PedidoGridViewModel>().ReverseMap();
@@ -117,6 +125,11 @@ namespace GtecIt.App_Start
             Mapper.CreateMap<Titulo, TituloEditViewModel>().ReverseMap();
             Mapper.CreateMap<Titulo, TituloCreateViewModel>().ReverseMap();
 
+
+            Mapper.CreateMap<Tituloapagar, TituloapagarIndexViewModel>().ReverseMap();
+            Mapper.CreateMap<Tituloapagar, TituloapagarGridViewModel>().ReverseMap();
+            Mapper.CreateMap<Tituloapagar, TituloapagarEditViewModel>().ReverseMap();
+            Mapper.CreateMap<Tituloapagar, TituloapagarCreateViewModel>().ReverseMap();
 
             Mapper.CreateMap<Banco, BancoIndexViewModel>().ReverseMap();
             Mapper.CreateMap<Banco, BancoGridViewModel>().ReverseMap();

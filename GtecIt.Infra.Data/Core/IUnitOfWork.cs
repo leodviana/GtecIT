@@ -9,6 +9,8 @@ namespace GtecIt.Infra.Data.Core
     {
         // IProfessorRepository Professors { get; }
         ITipoPagamentoRepositorio TipoPagamentos { get; }
+
+       
         IBancoRepositorio Bancos { get; }
         ICefalometriaRepositorio Cefalometrias { get; }
         ITipoTituloRepositorio TipoTitulos { get; }
@@ -21,12 +23,19 @@ namespace GtecIt.Infra.Data.Core
         IDentistaRepositorio Dentistas { get; }
         IConvenioRepositorio Convenios { get; }
         IEnderecoRepositorio Enderecos { get; }
-        IFornecedorRepositorio Fornecedors { get; }
+
+        IFornecedorRepositorio Fornecedores { get; }
+        ICentrodecustoRepositorio Centrodecusto { get; }
         INotaEntradaRepositorio NotaEntradas { get; }
         INotaEntradaItemRepositorio NotaEntradaItems { get; }
+        ITipoEntradaRepositorio TipoEntradas { get; }
+        ITituloapagarRepositorio Titulosapagar { get; }
+        ITipoNotaRepositorio TipoNotas { get; }
+
         IOrcamentoRepositorio Orcamentos { get; }
         IOrcamentoItemRepositorio OrcamentoItens { get; }
         ITituloRepositorio Titulos { get; }
+        
         IPedidoRepositorio Pedidos { get; }
         IPedidoItemRepositorio PedidoItems { get; }
         IGrupoRepositorio Grupos { get; }

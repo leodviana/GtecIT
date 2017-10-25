@@ -27,6 +27,8 @@ namespace GtecIt.Infra.Data.Persistencia
         public DbSet<Cefalometria> Cefalometrias { get; set; }
         public DbSet<TipoTitulo> TipoTitulos { get; set; }
         public DbSet<TipoTelefone> TipoTelefones { get; set; }
+
+       
         public DbSet<Sexo> Sexos { get; set; }
         public DbSet<EstadoCivil> EstadoCivils { get; set; }
         public DbSet<Profissao> Profissoes { get; set; }
@@ -35,12 +37,21 @@ namespace GtecIt.Infra.Data.Persistencia
         public DbSet<Dentista> Dentistas { get; set; }
         public DbSet<Convenio> Convenios { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
-        public DbSet<Fornecedor> Fornecedors { get; set; }
+
+        public DbSet<Fornecedor> Fornecedores { get; set; }
+        public DbSet<CentrodeCusto> CentrodeCustos { get; set; }
         public DbSet<NotaEntrada> NotaEntradas { get; set; }
         public DbSet<NotaEntradaItem> NotaEntradaItems { get; set; }
+        public DbSet<TipoEntrada> TipoEntrada { get; set; }
+        public DbSet<TipoNota> TipoNotas { get; set; }
+        public DbSet<Tituloapagar> Titulosapagar { get; set; }
+
         public DbSet<Orcamento> Orcamentos { get; set; }
         public DbSet<OrcamentoItem> OrcamentoItens { get; set; }
         public DbSet<Titulo> Titulos { get; set; }
+
+        
+
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoItem> PedidoItems { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
@@ -55,23 +66,30 @@ namespace GtecIt.Infra.Data.Persistencia
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new TipoPagamentoConfiguration());
+
+            
             modelBuilder.Configurations.Add(new TipoTituloConfiguration());
+            
             modelBuilder.Configurations.Add(new TipoTelefoneConfiguration());
             modelBuilder.Configurations.Add(new SexoConfiguration());
             modelBuilder.Configurations.Add(new EstadoCivilConfiguration());
             modelBuilder.Configurations.Add(new GrupoConfiguration());
             modelBuilder.Configurations.Add(new SubGrupoConfiguration());
             modelBuilder.Configurations.Add(new ProdutoConfiguration());
+            
 
             modelBuilder.Configurations.Add(new ProfissaoConfiguration());
             modelBuilder.Configurations.Add(new NotaEntradaConfiguration());
             modelBuilder.Configurations.Add(new NotaEntradaItemConfiguration());
-            modelBuilder.Configurations.Add(new FornecedorConfiguration());
+            modelBuilder.Configurations.Add(new TipoNotaConfiguration());
+            modelBuilder.Configurations.Add(new TipoEntradaConfiguration());
+
             modelBuilder.Configurations.Add(new PessoaConfiguration());
             modelBuilder.Configurations.Add(new EnderecoConfiguration());
 
             modelBuilder.Configurations.Add(new ClienteConfiguration());
             modelBuilder.Configurations.Add(new DentistaConfiguration());
+            modelBuilder.Configurations.Add(new FornecedorConfiguration());
 
             modelBuilder.Configurations.Add(new PedidoConfiguration());
             modelBuilder.Configurations.Add(new PedidoItemConfiguration());
@@ -83,6 +101,9 @@ namespace GtecIt.Infra.Data.Persistencia
             modelBuilder.Configurations.Add(new BancoConfiguration());
             modelBuilder.Configurations.Add(new ConvenioConfiguration());
             modelBuilder.Configurations.Add(new CefalometriaConfiguration());
+            modelBuilder.Configurations.Add(new CentrodecustoConfiguration());
+            modelBuilder.Configurations.Add(new TituloapagarConfiguration());
+
 
             modelBuilder.Configurations.Add(new CefalometriaItemConfiguration());
 

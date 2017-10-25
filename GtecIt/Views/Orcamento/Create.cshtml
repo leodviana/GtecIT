@@ -1,7 +1,7 @@
 ﻿@using GtecIt.HTMLHelpers
 @model GtecIt.ViewModels.OrcamentoCreateViewModel
 
-<br />
+<h1></h1>
 @{
     ViewBag.Title = "Incluir - Atendimento";
 }
@@ -29,16 +29,17 @@
                     </div>
 
                     <div class="col-sm-8">
-                        <label>Paciente</label>
+                        <label>Cliente</label>
                         <div class="input-group">
 
                             @Html.AutoCompleteFor(x => x.NomeCliente, "id_grlcliente", Model.id_grlcliente, Url.Action("AutoCompleteClientePreFetch", "Cliente"), "a", true, "iniciarListaCliente")
                             
                             <div class="input-group-btn">
-                                
-                                <a id="btnVoltar" href="@Url.Action("CreateCliente")" class=" btn btn-primary">
+
+                                <a id="btnVoltar" href="@Url.Action("CreateCliente")" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
+                                
                             </div>
                         </div>
                         
@@ -48,25 +49,24 @@
                 </div>
                 <h1></h1>
                 <div class="row">
-                    <div class="col-sm-6">
-
-                        <label>Dentista</label>
+                    <div class="col-sm-5">
+                        <label>Dentista </label>
                         <div class="input-group">
                             @Html.AutoCompleteFor(x => x.NomeDentista, "Id_grldentista", Model.Id_grldentista, Url.Action("AutoCompleteDentistaPreFetch", "Dentista"), "a", true, "iniciarListaDentista")
                             <div class="input-group-btn">
-                                <a id="btndentista" href="@Url.Action("CreateDentista")" class=" btn btn-primary">
+
+                                <a id="btnVoltar2" href="@Url.Action("CreateDentista")" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </a>
+                                
                             </div>
-
-
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label>Padrão de Atend.</label>
                         @Html.DropDownListFor(x => x.id_grlconvenio, Model.Dropdownconvenio, "Selecione...", new { @class = "form-control", @name = "id_grlconvenio", @id = "id_grlconvenio", @required = "true" })
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label>Observação</label>
 
                         <input class="form-control" name="obs" type="text" />
@@ -92,6 +92,55 @@
     </div>
 
 }
+
+
+<div class="modal fade" id="modalPessoa" data-carregadefault="true" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Consulta Cadastro Básico</h4>
+            </div>
+            <form id="formPessoa" data-url="@Url.Action("ObterPessoa", "Pessoa")">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label>Pesquisar por:</label>
+
+                            <select class="form-control" id="tipoConsultaModalPessoa" name="tipoConsultaModalPessoa">
+                                <option value="codigo" selected>Código</option>
+                                <option value="descricao">Nome</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <label>Filtro</label>
+                            <input type="text" class="form-control" id="descricaoModalPessoa" name="descricaoModalPessoa" onkeypress="return SomenteNumero()" required="required" />
+
+                        </div>
+                    </div>
+                    <div class="row" id="body">
+                        <table class="table table-condensed table-hover table-responsive">
+                            <thead>
+                                <tr style="background-color:#F8F8F8">
+                                    <th class="col-sm-2 text-center">Código</th>
+                                    <th>Descrição</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tabelaPessoa"></tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="modalIncluirTipoTelefone" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -278,13 +327,14 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            iniciarListaCliente(); //Iniciando a lista manualmente  
-            iniciarListaDentista(); //Iniciando a lista manualmente  
-            //  document.getElementById('CodigoProfissao').focus();
-            ////  document.getElementById('nome').focus();
-
-
+            iniciarListaCliente(); //Iniciando a lista manualmente
+            iniciarListaDentista(); //Iniciando a lista manualmente
+            
+            
         });
+
+
+       
 
         $(".btnGridExcluir").click(function (e) {
             e.preventDefault();
@@ -400,4 +450,5 @@
     @Scripts.Render("~/Scripts/gtec/modal.profissao.js")
     @Scripts.Render("~/Scripts/gtec/modal.cliente.js")
     @Scripts.Render("~/Scripts/gtec/modal.dentista.js")
+    @Scripts.Render("~/Scripts/gtec/modal.pessoa.js")
 }

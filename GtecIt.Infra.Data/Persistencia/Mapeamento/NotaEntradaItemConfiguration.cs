@@ -7,32 +7,37 @@ namespace GtecIt.Infra.Data.Persistencia.Mapeamento
     {
         public NotaEntradaItemConfiguration()
         {
-            
+
             // Primary Key
-            this.HasKey(t => t.Codigo);
+            this.HasKey(t => t.Id_stqentra);
 
             // Properties
-            this.Property(t => t.StatusEntrada)
+            this.Property(t => t.status_entrada)
                 .HasMaxLength(1);
 
             // Table & Column Mappings
-            this.ToTable("stqentra", "dbgtec");
-            this.Property(t => t.Codigo).HasColumnName("num_entrada");
-            this.Property(t => t.CodigoNotaEntrada).HasColumnName("id_noten");
-            this.Property(t => t.NumeroItem).HasColumnName("num_item");
-            this.Property(t => t.CodigoAlmoxarifado).HasColumnName("cd_almox");
-            this.Property(t => t.TipoEntrada).HasColumnName("tp_entrada");
-            this.Property(t => t.DataEntrada).HasColumnName("dt_entrada");
-            this.Property(t => t.CodigoProduto).HasColumnName("cd_produto");
-            this.Property(t => t.QtdeEntrada).HasColumnName("qtd_entrada");
-            this.Property(t => t.ValorTotal).HasColumnName("valor_total");
-            this.Property(t => t.StatusEntrada).HasColumnName("status_entrada");
-            this.Property(t => t.CodigoUsuario).HasColumnName("cd_usuario");
+            this.ToTable("stqentra", "dbgtec_2");
+            this.Property(t => t.Id_stqentra).HasColumnName("Id_stqentra");
+            this.Property(t => t.id_stqnoten).HasColumnName("id_stqnoten");
+            this.Property(t => t.num_item).HasColumnName("num_item");
+            this.Property(t => t.cd_almox).HasColumnName("cd_almox");
+            this.Property(t => t.tp_entrada).HasColumnName("tp_entrada");
+            this.Property(t => t.dt_entrada).HasColumnName("dt_entrada");
+            this.Property(t => t.cd_produto).HasColumnName("cd_produto");
+            this.Property(t => t.qtd_entrada).HasColumnName("qtd_entrada");
+            this.Property(t => t.valor_total).HasColumnName("valor_total");
+            this.Property(t => t.status_entrada).HasColumnName("status_entrada");
+            this.Property(t => t.Id_grlcdusu).HasColumnName("Id_grlcdusu");
 
             // Relationships
-            this.HasRequired(t => t.NotaEntrada)
-                .WithMany(t => t.NotaItemEntradas)
-                .HasForeignKey(d => d.CodigoNotaEntrada);
+          
+          
+            this.HasOptional(t => t.stqcdprd)
+                .WithMany(t => t.ItensEntrada)
+                .HasForeignKey(d => d.cd_produto);
+            this.HasRequired(t => t.NotasEntradas)
+                .WithMany(t => t.itens_entrada)
+                .HasForeignKey(d => d.id_stqnoten);
         }
     }
 }
